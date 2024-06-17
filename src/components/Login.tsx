@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => (
       Log in to spotify
     </h2>
     <div>
-      <a style={{ textDecoration: "none" }} href={loginUrl}>
+      <a style={{ textDecoration: "none" }} href={loginUrl? loginUrl : "#"}>
         <span className="loginButton">Log In</span>
       </a>
     </div>
