@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromUrl, loginUrl } from "./auth/SpotifyAuth";
+import { getTokenFromUrl} from "./auth/SpotifyAuth";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./components/Login";

@@ -3,9 +3,6 @@ import SpotifyWebApi from "spotify-web-api-js";
 import '../App.css';
 import { Grid } from "@mui/material";
 
-
-const spotifyApi = new SpotifyWebApi();
-
 interface HomePageProps {
   user: any;
   playlists: any[];

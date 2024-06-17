@@ -41,6 +41,9 @@ button:hover {
   height: 3rem;
   font-weight: 700;
   margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .card{
   display: flex;
