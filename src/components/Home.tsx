@@ -65,8 +65,8 @@ const HomePage: React.FC<HomePageProps> = ({
           </Grid>
           <Grid item xs={8} sm={6}>
             <h2 style={{ fontSize: "30px" }}>{playlist.name}</h2>
-            <button onClick={() => handlePlay(playlist.uri)}>Play</button>
-            <button onClick={handlePause}>Pause</button>
+            <button onClick={() => handlePlay(playlist.uri)} onTouchEnd={() => handlePlay(playlist.uri)}>Play</button>
+            <button onClick={handlePause} onTouchEnd={handlePause}>Pause</button>
           </Grid>
           </Grid>
         </Grid>
