@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { getTokenFromUrl} from "./auth/SpotifyAuth";
