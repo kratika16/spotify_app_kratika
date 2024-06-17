@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
-const smallScreen = useMediaQuery("max-width: 700px");
 
 interface HeaderProps {
   user: any;
@@ -22,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const smallScreen = useMediaQuery("max-width: 700px");
 
   return (
     <>
