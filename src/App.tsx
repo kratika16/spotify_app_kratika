@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromUrl, loginUrl } from "./auth/SpotifyAuth";
+import { getTokenFromUrl} from "./auth/SpotifyAuth";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./components/Home";
 import LoginPage from "./components/Login";
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [playlists, setPlaylists] = useState<any[]>([]);
   const [player, setPlayer] = useState<any>(null);
   const [deviceId, setDeviceId] = useState<string | null>(null);
+  console.log("Player", player)
 
   useEffect(() => {
     const hash = getTokenFromUrl();
