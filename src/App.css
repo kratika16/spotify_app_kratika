@@ -1,38 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  border-radius: 8px;
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #1db954;
   color: white;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 7rem;
+  height: 2.5rem;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 999px) {
+  button {
+    width: 6rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+button:hover {
+  background-color: #1ed760;
+}
+
+.loginButton{
+  background-color: #1ed760;
+  color: black;
+  border: 0px;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  width: 7rem;
+  height: 3rem;
+  font-weight: 700;
+  margin-top: 4rem;
+}
+.card{
+  display: flex;
+  flex-direction: row;
+  background-color: darkcyan;
+  width: 30rem;
+  border: 1px;
+  border-radius: 13px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  justify-content: space-between;
+}
+@media screen and (min-width: 600px) and(max-width: 999px) {
+  .card {
+    width: 25rem;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 599px) {
+  .card {
+    width: 20rem;
   }
 }
