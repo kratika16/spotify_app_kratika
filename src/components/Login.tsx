@@ -1,7 +1,10 @@
 import { loginUrl } from "../auth/SpotifyAuth";
 
+
+const handleLogin = () => {
+  window.location.href = loginUrl;
+};
 const LoginPage: React.FC = () => (
-  // <a href={loginUrl}>Login to Spotify</a>
   <div
     style={{
       backgroundColor: "black",
@@ -23,9 +26,9 @@ const LoginPage: React.FC = () => (
       Log in to spotify
     </h2>
     <div>
-      <a style={{ textDecoration: "none" }} href={loginUrl? loginUrl : "#"}>
-        <span className="loginButton">Log In</span>
-      </a>
+      <button className="loginButton" onClick={handleLogin}>
+        <span>Log In</span>
+      </button>
     </div>
     <p style={{ color: "#6a6a6a", fontWeight: "400", marginTop: "5rem" }}>
       Don't have an account?
