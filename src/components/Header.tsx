@@ -7,8 +7,11 @@ import {
   Modal,
   Box,
   Avatar,
+  useMediaQuery,
 } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+
+const smallScreen = useMediaQuery("max-width: 700px");
 
 interface HeaderProps {
   user: any;
@@ -37,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "30rem",
+            width: smallScreen ? "20rem" : "30rem",
             backgroundColor: "black",
             color: "white",
             padding: "2rem",
