@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const smallScreen = useMediaQuery("max-width: 700px");
+  const smallScreen = useMediaQuery('(max-width:600px)');
 
   return (
     <>
