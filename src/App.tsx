@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromUrl} from "./auth/SpotifyAuth";
+import { getTokenFromUrl, loginUrl } from "./auth/SpotifyAuth";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import LoginPage from "./components/Login";
 import HomePage from "./components/Home";
+import LoginPage from "./components/Login";
+import Header from "./components/Header";
+import "./App.css";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
 
     if (_token) {
       setToken(_token);
+      localStorage.setItem("spotifyToken", _token); //storing token in localStorage incase user refreshes the page it shouldn't logout
       spotifyApi.setAccessToken(_token);
 
       spotifyApi.getMe().then((user: any) => {
@@ -48,7 +50,7 @@ const App: React.FC = () => {
         player.addListener("ready", ({ device_id }: { device_id: string }) => {
           setDeviceId(device_id);
           console.log("Ready with Device ID", device_id);
-          setPlayer(player); // Set player after ready
+          setPlayer(player); //sets the player once it is ready
         });
 
         player.addListener(
@@ -60,6 +62,52 @@ const App: React.FC = () => {
 
         player.connect();
       };
+    } else {
+      const storedToken = localStorage.getItem("spotifyToken");
+      if (storedToken) {
+        setToken(storedToken);
+        spotifyApi.setAccessToken(storedToken);
+
+        spotifyApi.getMe().then((user: any) => {
+          setUser(user);
+        });
+
+        spotifyApi.getUserPlaylists().then((playlists: any) => {
+          setPlaylists(playlists.items);
+        });
+
+        const script = document.createElement("script");
+        script.src = "https://sdk.scdn.co/spotify-player.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        window.onSpotifyWebPlaybackSDKReady = () => {
+          const player = new window.Spotify.Player({
+            name: "Spotify Web Player",
+            getOAuthToken: (cb: (token: string) => void) => {
+              cb(storedToken);
+            },
+          });
+
+          player.addListener(
+            "ready",
+            ({ device_id }: { device_id: string }) => {
+              setDeviceId(device_id);
+              console.log("Ready with Device ID", device_id);
+              setPlayer(player);
+            }
+          );
+
+          player.addListener(
+            "not_ready",
+            ({ device_id }: { device_id: string }) => {
+              console.log("Device ID has gone offline", device_id);
+            }
+          );
+
+          player.connect();
+        };
+      }
     }
   }, []);
 
@@ -77,13 +125,12 @@ const App: React.FC = () => {
   };
 
   const handlePause = () => {
-    if (player) {
-      player
-        .pause()
-        .then(() => {
-          console.log("Playback paused successfully");
+    if (deviceId) {
+      spotifyApi
+        .pause({
+          device_id: deviceId,
         })
-        .catch((error: any) => {
+        .catch((error) => {
           console.error("Error pausing the playback:", error);
         });
     }
@@ -92,9 +139,10 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
+        {user && <Header user={user} />}
         <Routes>
           <Route
-            path="/callback"
+            path="/home"
             element={
               token ? (
                 <HomePage
