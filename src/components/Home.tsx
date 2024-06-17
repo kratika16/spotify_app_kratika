@@ -1,7 +1,8 @@
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import '../App.css';
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
+
 
 const spotifyApi = new SpotifyWebApi();
 
