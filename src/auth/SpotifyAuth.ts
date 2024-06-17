@@ -1,6 +1,8 @@
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const CLIENT_ID = "5d0f7f791d8f4e699ede87897ad45ed7";
-const REDIRECT_URI = "http://localhost:3000/callback";
+const REDIRECT_URI = process.env.NODE_ENV === 'production'
+  ? 'https://master--kratika-spotify.netlify.app/callback'
+  : 'http://localhost:3000/callback';
 console.log("hey", CLIENT_ID, REDIRECT_URI)
 const SCOPES = [
   'user-read-private',
