@@ -1,5 +1,4 @@
 import React from "react";
-import SpotifyWebApi from "spotify-web-api-js";
 import '../App.css';
 import { Grid } from "@mui/material";
 

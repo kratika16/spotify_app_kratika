@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => (
         <span>Log In</span>
       </button>
     </div>
-    <p style={{ color: "#6a6a6a", fontWeight: "400", marginTop: "5rem" }}>
+    {/* <p style={{ color: "#6a6a6a", fontWeight: "400", marginTop: "5rem" }}>
       Don't have an account?
       <a
         style={{
@@ -49,7 +49,7 @@ const LoginPage: React.FC = () => (
       >
         <span>Sign up for Spotify</span>
       </a>
-    </p>
+    </p> */}
   </div>
 );
 
