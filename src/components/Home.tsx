@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography, Card, CardMedia, CardContent, CardActions, Button } from "@mui/material";
 
 interface HomePageProps {
   user: any;
@@ -21,72 +21,62 @@ const HomePage: React.FC<HomePageProps> = ({
     style={{
       backgroundColor: "black",
       color: "white",
-      display: "flex",
-      flexDirection: "column",
+      minHeight: "100vh",
+      padding: "2rem",
     }}
+    spacing={4}
   >
-    <Grid
-      item
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Grid
-        container
-        justifyContent="space-between"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h2>Your Playlists</h2>
-        {playlists.map((playlist) => (
-          <Grid
-            item
-            key={playlist.id}
-            className="card"
-            style={{ marginBottom: "1rem" }}
-          >
-            <Grid container>
-              <Grid item xs={4} sm={6}>
-                {playlist.images && playlist.images.length > 0 ? (
-                  <img
-                    src={playlist.images[0].url}
-                    alt={playlist.name}
-                    width={100}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                ) : (
-                  <img
-                    src="default-image-url"
-                    alt="default"
-                    width={100}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                )}
-              </Grid>
-              <Grid item xs={8} sm={6}>
-                <h2 style={{ fontSize: "30px" }}>{playlist.name}</h2>
-                <button
-                  onClick={() => handlePlay(playlist.uri)}
-                  onTouchEnd={() => handlePlay(playlist.uri)}
-                >
-                  Play
-                </button>
-                <button onClick={handlePause} onTouchEnd={handlePause}>
-                  Pause
-                </button>
-              </Grid>
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
+    <Grid item xs={12} style={{ textAlign: "center" }}>
+      <Typography variant="h4" component="h2" gutterBottom>
+        Your Playlists
+      </Typography>
     </Grid>
+    {playlists.map((playlist) => (
+      <Grid item xs={12} sm={6} md={4} key={playlist.id}>
+        <Card style={{ backgroundColor: "#1e1e1e", color: "white" }}>
+          {playlist.images && playlist.images.length > 0 ? (
+            <CardMedia
+              component="img"
+              alt={playlist.name}
+              height="140"
+              image={playlist.images[0].url}
+            />
+          ) : (
+            <CardMedia
+              component="img"
+              alt="default"
+              height="140"
+              image="default-image-url"
+            />
+          )}
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {playlist.name}
+            </Typography>
+          </CardContent>
+          <CardActions style={{display: "flex", justifyContent: "space-around"}}>
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => handlePlay(playlist.uri)}
+              onTouchEnd={() => handlePlay(playlist.uri)}
+              style={{ color: "#1DB954" }}
+            >
+              Play
+            </Button>
+            <Button
+              size="small"
+              color="secondary"
+              onClick={handlePause}
+              onTouchEnd={handlePause}
+              style={{ color: "#f44336" }}
+            >
+              Pause
+            </Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    ))}
   </Grid>
 );
 
